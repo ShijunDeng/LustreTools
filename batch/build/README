@@ -1,0 +1,4 @@
+因为lustre依赖修改的内核,请严格按一下顺序运行
+sh build_newkernel.sh
+sh build_lustre_server.sh
+sh build_lustre_client.sh

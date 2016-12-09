@@ -1,0 +1,84 @@
+1.lustre/osc/osc_request.c
+	1)osc_request.c 第1493-1653行左右增加函数 time_ewma_add_extlock、qos_adjust
+	2)osc_request.c 第1655行左右函数brw_interpret 从1664开始增加如下代码
+		qos_adjust(req->rq_import->imp_obd,
+			   &req->rq_arrival_time,
+				   &aa->aa_oa->o_sent_time,
+				   lustre_msg_get_opc(req->rq_reqmsg) - OST_READ,
+				   req->rq_bulk->bd_nob_transferred);
+	3)osc_request.c第1801行左右函数：osc_build_rpc在1918行开始增加
+		/* sent_time is used by QoS */
+		cfs_gettimeofday(&aa->aa_oa->o_sent_time);
+		其中aa_oa->o_sent_time中的o_sent_time为在lustre/include/lustre/lustre_idl.h 3419行增加的 用作统计发送时间的变量，参见6
+	4)osc_request.c第1942行左右开始增加qos_throttle(&cli->qos);及其注释
+	5)头文件引用#include <ascar.h>
+	
+2.lustre/osc/lproc_osc.c
+	1)在93行左右函数osc_max_rpcs_in_flight_seq_write中
+		101行增加struct qos_data_t *qos = &cli->qos;
+		123-126行增加：
+			/* Update the value tracked by QoS routines too */
+			spin_lock(&qos->lock);
+			qos->max_rpc_in_flight100 = val * 100;
+			spin_unlock(&qos->lock);
+	2)577行左右开始增加：
+		static int osc_min_brw_rpc_gap_seq_show(struct seq_file *m, void *v)
+		static int osc_min_brw_rpc_gap_seq_write(struct file *file,
+                                   const char __user *buffer,
+                                   size_t count, loff_t *off)	
+		static int osc_qos_rules_seq_show(struct seq_file *m, void *v)	
+		static int osc_qos_rules_seq_write(struct file *file,
+                                   const char __user *buffer,
+                                   size_t count, loff_t *off)
+		四个函数以及相关实现和宏替换语句
+	3)第751,752行左右增加
+		LPROC_SEQ_FOPS_RW_TYPE(osc, min_brw_rpc_gap);
+		LPROC_SEQ_FOPS_RW_TYPE(osc, qos_rules);
+		第818-821行左右增加
+		{ .name	=	"qos_rules",
+		  .fops	=	&osc_qos_rules_fops	}
+		{ .name	=	"min_brw_rpc_gap",
+		  .fops	=	&osc_min_brw_rpc_gap_fops	},
+	4)头文件引用#include <ascar.h>
+	
+3.lustre/include下增加ascar.h文件
+4.lustre/include/obd.h struct obd_client中增加struct qos_data_t        qos;以及头文件包含语句
+6.在lustre/include/lustre/lustre_idl.h 3419行左右增加
+	struct timeval		o_sent_time;    /* timeval is 64x2 bits on Linux */
+	用作统计发送时间的变量，参见1-3)
+			   
+7.lustre/obdclass/genops.c	
+   1)添加
+       static void init_time_ewma(struct time_ewma *ewma)
+        {
+            ewma->alpha_inv = 8;//不能初始化为0,否则肯等导致内核除0宕机
+            ewma->ea = 0;
+            ewma->last_time.tv_sec = 0;
+            ewma->last_time.tv_usec = 0;
+        }
+
+        static void init_qos(struct client_obd *cli)
+        {
+            struct qos_data_t *qos = &cli->qos;
+
+            init_time_ewma(&qos->ack_ewma);
+            init_time_ewma(&qos->sent_ewma);
+
+            spin_lock(&cli->cl_loi_list_lock);
+            qos->max_rpc_in_flight100 = cli->cl_max_rpcs_in_flight * 100;
+            spin_unlock(&cli->cl_loi_list_lock);
+        }
+    2)struct obd_device *class_newdev(const char *type_name, const char *name) 添加
+         obd_devs[i] = result;
+ 
+8.lustre/obdclass/lprocfs_status.c	
+  1)int lprocfs_import_seq_show(struct seq_file *m, void *data)
+    在这里计算最新的带宽和时延情况
+    
+9.lustre/osc/osc_cache.c
+    static int osc_io_unplug0(const struct lu_env *env, struct client_obd *cli,
+			  struct osc_object *osc, int async)
+    函数中限流  qos_throttle(&cli->qos);
+10.lustre/ptlrpc/pack_generic.c
+    字节序处理
+11.lustre/include/ascartest	  

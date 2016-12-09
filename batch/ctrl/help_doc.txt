@@ -1,0 +1,103 @@
+名称
+	multexu.sh  多节点环境下的一个实用的控制工具 
+
+使用格式
+	sh multexu.sh [OPTION]... --iptable=
+
+描述
+	.参数是不能缺少的,否则将非正常结束.
+
+		
+		-c, --cmd
+			要执行的命令语句可以是一组命令,示例:
+				-c="mv a.txt b.txt && sh exe.sh" or --cmd="mv a.txt b.txt && sh exe.sh"
+			强烈建议将这个参数放在最后一个位置上
+
+		-i, --iptable
+			将要执行给定命令的节点的参数列表,有两种给出形式,详情如下:
+			#格式 1,直接给出ip地址,如果有多个ip地址同时给出,需要用逗号隔开,示例：
+				ip,ip,ip  example:-i=192.168.3.11,192.168.3.12,192.166.4.6 or --iptable=192.168.3.11,192.168.3.12
+			#格式 2,在config目录下定义一个.out格式的配置文件,给出配置文件名称,该配置文件中ip地址格式为:一个地址占据一行,不要包含无关空格等信息,示例：
+				-i=nodes_all.out or --iptable=nodes_all.out
+					
+		-l,--location
+			该参数用作在发送文件时指定文件在目的节点上的存储位置,注意是绝对路径,示例
+				-l=/usr/src/share or -location=/usr/src/share
+			注意该参数总是和-s,-sendfile一起使用
+				参见-s,--sendfile
+			
+		-r, --reboot
+			重启指定的节点
+			
+		-s,--sendfile
+			将要发送的文件或者目录列表,可以有多个文件或者目录同时发送,文件列表需要用逗号隔开,每个文件或者目录必须以绝对路径形式描述,示例:
+				-s=/usr/src/multexu,/usr/src/test.sh or -sendfile=/usr/src/multexu,/usr/src/test.sh
+			注意该参数总是和-l,--location一起使用
+				参见-l,--location
+		--supercmd
+			复杂的命令，该参数必须放在最后，目前不建议使用
+		-v,--version
+			输出版本信息
+		
+作者
+		Written by Shijun Deng.
+
+COPYRIGHT
+		Copyright  ©  2016 Data Storage and Applicatioin Laboratory
+		Wuhan National Lab for Optoelectronics, Huazhong university of Science and Technology
+
+SEE ALSO
+		Any question,please contact dengshijun1992@gmail.com
+
+
+	
+		
+NAME
+	multexu.sh  simple unified management tool for multi-node scenario  
+
+SYNOPSIS
+	sh multexu.sh [OPTION]... --iptable=
+
+DESCRIPTION
+	.With no OPTION, will be non-normal exit .
+
+		
+		-c, --cmd
+				complex command statement,example:
+					-c="mv a.txt b.txt && sh exe.sh" or --cmd="mv a.txt b.txt && sh exe.sh"
+				I strongly suggest that set -c,--cmd as the last parameter
+
+		-i, --iptable
+			the ip address set of hosts which execute the command given by some parameters,the format:
+			#format 1,the value of the i|iptable parameter should be a comma-separated list of valid Strings
+					ip,ip,ip  example:-i=192.168.3.11,192.168.3.12,192.166.4.6 or --iptable=192.168.3.11,192.168.3.12
+				#format 2,define ip address set of hosts in configuration file in config directory,such as slurmnodes_all.out
+					-i=slurmnodes_all.out or --iptable=slurmnodes_all.out
+					
+		-l,--location
+			this parameter is used to send files to some hosts,-l,--location tell what directory the files will be stored in,the format as bellow:
+			-l=/usr/src/share or -location=/usr/src/share
+			By the way,this parameter is always used with -s,-sendfile
+			see also -s,--sendfile
+			
+		-r, --reboot
+			reboot the machines which its ip given in parameter iptable
+			
+		-s,--sendfile
+			the absolute path of the files or directory will be send,if a group of files needed to be send ,s|sendfile parameter should be a comma-separated list of valid Strings,the format as bellow:
+			-s=/usr/src/multexu,/usr/src/test.sh or -sendfile=/usr/src/multexu,/usr/src/test.sh
+			see also -l,--location
+			
+		-v,--version
+				output version information and exit
+		
+AUTHOR
+		Written by Shijun Deng.
+
+COPYRIGHT
+		Copyright  ©  2016 Data Storage and Applicatioin Laboratory
+		Wuhan National Lab for Optoelectronics, Huazhong university of Science and Technology
+
+SEE ALSO
+		Any question,please contact dengshijun1992@gmail.com
+
