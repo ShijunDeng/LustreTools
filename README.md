@@ -11,7 +11,7 @@
 - **自动测试** ：自动测试Lustre的性能，生成测试报告；
 - **性能监测** ：使用Lustre Monitoring Tool监测lustre的运行情况；
 
-**说明**：LustreTools针对的是CentOS7（Linux kernel 3.10.0-327.el7.x86_64）和Lustre2.8.0，其它版本的系统使用本工具可能需要解决一些兼容性问题。另外，CentOS7在安装过程中，选择的版本和安装配置不同，也可能导致一些包的依赖性问题，因此建议CentOS7的安装过程参照视频教程进行安装。[LustreTools完整下载](http://pan.baidu.com/s/1gfDkj7P)
+**说明**：LustreTools针对的是CentOS7（Linux kernel 3.10.0-327.el7.x86_64）和Lustre2.8.0，其它版本的系统使用本工具可能需要解决一些兼容性问题。另外，CentOS7在安装过程中，选择的版本和安装配置不同，也可能导致一些包的依赖性问题，因此建议CentOS7的安装过程参照视频教程进行安装。LustreTools自带Lustre2.8.0全套安装文件，参见[LustreTools](http://pan.baidu.com/s/1gfDkj7P)下载。
 
 -------------------
 
@@ -302,7 +302,7 @@ LustreTools主要是采用shell和python脚本编写的自动化控制套件
 
 		--random参数指定针对random读写方式的一些特殊添加命令,只对random读写方式生效,实例中指定了读写的控制比例
 
-参见[Fio官方文档](https://linux.die.net/man/1/fio)，结合本脚本使用
+参见[Fio官方文档](https://linux.die.net/man/1/fio)，结合本脚本使用，参见[FIO测试自动化分析](https://github.com/ShijunDeng/luspinf/tree/master/batch/LuspinfAnalysis)生成测试报告。
 
 ##使用tool
 说明：tool中集成一些常见的工具类脚本,使用说明
@@ -352,7 +352,7 @@ LustreTools主要是采用shell和python脚本编写的自动化控制套件
 	参数选项:
 
 		--skip_build_kernel ：是否需要编译新内核。如果是首次运行该脚本或者对内核做过修改，那么编译节点需要先编译内核，并自动安装新内核后，再开始文件系统的编译工作；如果不涉及内核的修改，可以省略该选项或者设置为0。skip_build_kernel默认值为1
-		-- goto_compile与--only_pre：鉴于虚拟机节点复制需要5-10分钟或者更长时间，为了避免代码修改完毕后运行脚本需要长时间等待情况，可以在空余时间指定--only_pre=1，这样只恢复备份的节点，而不进行后续编译、安装、部署等工作，在代码修改完毕后指定-- goto_compile=1直接进行编译、安装、部署等工作，而不需要恢复节点的过程，达到节约时间的目的。默认值为0
+		--goto_compile与--only_pre：鉴于虚拟机节点复制需要5-10分钟或者更长时间，为了避免代码修改完毕后运行脚本需要长时间等待情况，可以在空余时间指定--only_pre=1，这样只恢复备份的节点，而不进行后续编译、安装、部署等工作，在代码修改完毕后指定-- goto_compile=1直接进行编译、安装、部署等工作，而不需要恢复节点的过程，达到节约时间的目的。默认值为0
 		--install_lmt：是否安装lmt工具；默认值为1
 
 
