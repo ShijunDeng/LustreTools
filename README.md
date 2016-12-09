@@ -11,7 +11,7 @@
 - **自动测试** ：自动测试Lustre的性能，生成测试报告；
 - **性能监测** ：使用Lustre Monitoring Tool监测lustre的运行情况；
 
-**说明**：LustreTools针对的是CentOS7（Linux kernel 3.10.0-327.el7.x86_64）和Lustre2.8.0，其它版本的系统使用本工具可能需要解决一些兼容性问题。另外，CentOS7在安装过程中，选择的版本和安装配置不同，也可能导致一些包的依赖性问题，因此建议CentOS7的安装过程参照视频教程进行安装。
+**说明**：LustreTools针对的是CentOS7（Linux kernel 3.10.0-327.el7.x86_64）和Lustre2.8.0，其它版本的系统使用本工具可能需要解决一些兼容性问题。另外，CentOS7在安装过程中，选择的版本和安装配置不同，也可能导致一些包的依赖性问题，因此建议CentOS7的安装过程参照视频教程进行安装。[LustreTools完整下载](http://pan.baidu.com/s/1gfDkj7P)
 
 -------------------
 
@@ -148,7 +148,7 @@ LustreTools主要是采用shell和python脚本编写的自动化控制套件
 			
 #LustreTools架构
 
-![image](https://github.com/ShijunDeng/LustreTools/source/image/architecture.png)
+![image](https://github.com/ShijunDeng/LustreTools/blob/master/source/image/architecture.png)
 
 **说明**
 
@@ -292,7 +292,7 @@ LustreTools主要是采用shell和python脚本编写的自动化控制套件
 		--mdsnode为mdsnode服务器的ip地址
 		--lmt_mgnode为lmt管理节点ip地址,缺省情况下为当前节点
 	
-- 参见[lmt配置](https://github.com/ShijunDeng/LustreTools/document/lmt.docx)配置相应的/etc/hosts、/etc/hostfile、/etc/cerebro.conf文件后才能正常使用该命令
+- 参见[lmt配置](https://github.com/ShijunDeng/LustreTools/blob/master/document/lmt.docx)配置相应的/etc/hosts、/etc/hostfile、/etc/cerebro.conf文件后才能正常使用该命令
 
 ##使用test测试
 说明：进行测试，可以根据需要修改auto_test_fio.sh中的参数配置，详细使用方法见auto_test_fio.sh中的注释
@@ -310,7 +310,7 @@ LustreTools主要是采用shell和python脚本编写的自动化控制套件
 	sh test/set_display.sh 1440 900 #设置分辨率为1440*900
 
 ##使用MULTEXU进行统一控制
-说明：为便于测试过程中的管理中的管理，使用MULTEXU进行统一控制，具体使用方法见 [MULTEXU](https://github.com/ShijunDeng/multexu)。另外, 参见 [nrcmd.txt](https://github.com/ShijunDeng/LustreTools/nrcmd.txt) 中常见的控制命令
+说明：为便于测试过程中的管理中的管理，使用MULTEXU进行统一控制，具体使用方法见 [MULTEXU](https://github.com/ShijunDeng/multexu)。另外, 参见 [nrcmd.txt](https://github.com/ShijunDeng/LustreTools/blob/master/document/nrcmd.txt) 中常见的控制命令
 
 ##关于开发阶段全自动化
 鉴于Lustre开发系统的复杂性，使用该脚本前，一定先仔细阅读auto_lustre_2.8.0.sh脚本，并根据注释做定制。
