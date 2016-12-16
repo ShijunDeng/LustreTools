@@ -1,0 +1,94 @@
+diff -uprN old/lustre/utils/wiretest.c new/lustre/utils/wiretest.c
+--- old/lustre/utils/wiretest.c	2016-10-20 13:50:47.919000000 +0800
++++ old/lustre/utils/wiretest.c	2016-10-20 13:49:53.065000000 +0800
+@@ -1226,7 +1226,7 @@ void lustre_assert_wire_constants(void)
+ 		(unsigned)OBD_CKSUM_CRC32C);
+ 
+ 	/* Checks for struct obdo */
+-	LASSERTF((int)sizeof(struct obdo) == 208, "found %lld\n",
++	LASSERTF((int)sizeof(struct obdo) == 224, "found %lld\n",
+ 		 (long long)(int)sizeof(struct obdo));
+ 	LASSERTF((int)offsetof(struct obdo, o_valid) == 0, "found %lld\n",
+ 		 (long long)(int)offsetof(struct obdo, o_valid));
+@@ -1984,11 +1984,11 @@ void lustre_assert_wire_constants(void)
+ 		OBD_BRW_SOFT_SYNC);
+ 
+ 	/* Checks for struct ost_body */
+-	LASSERTF((int)sizeof(struct ost_body) == 208, "found %lld\n",
++	LASSERTF((int)sizeof(struct ost_body) == 224, "found %lld\n",
+ 		 (long long)(int)sizeof(struct ost_body));
+ 	LASSERTF((int)offsetof(struct ost_body, oa) == 0, "found %lld\n",
+ 		 (long long)(int)offsetof(struct ost_body, oa));
+-	LASSERTF((int)sizeof(((struct ost_body *)0)->oa) == 208, "found %lld\n",
++	LASSERTF((int)sizeof(((struct ost_body *)0)->oa) == 224, "found %lld\n",
+ 		 (long long)(int)sizeof(((struct ost_body *)0)->oa));
+ 
+ 	/* Checks for struct ll_fid */
+@@ -3892,7 +3892,7 @@ void lustre_assert_wire_constants(void)
+ 		 (long long)(int)sizeof(((struct llogd_conn_body *)0)->lgdc_ctxt_idx));
+ 
+ 	/* Checks for struct ll_fiemap_info_key */
+-	LASSERTF((int)sizeof(struct ll_fiemap_info_key) == 248, "found %lld\n",
++	LASSERTF((int)sizeof(struct ll_fiemap_info_key) == 264, "found %lld\n",
+ 		 (long long)(int)sizeof(struct ll_fiemap_info_key));
+ 	LASSERTF((int)offsetof(struct ll_fiemap_info_key, lfik_name[8]) == 8, "found %lld\n",
+ 		 (long long)(int)offsetof(struct ll_fiemap_info_key, lfik_name[8]));
+@@ -3900,9 +3900,9 @@ void lustre_assert_wire_constants(void)
+ 		 (long long)(int)sizeof(((struct ll_fiemap_info_key *)0)->lfik_name[8]));
+ 	LASSERTF((int)offsetof(struct ll_fiemap_info_key, lfik_oa) == 8, "found %lld\n",
+ 		 (long long)(int)offsetof(struct ll_fiemap_info_key, lfik_oa));
+-	LASSERTF((int)sizeof(((struct ll_fiemap_info_key *)0)->lfik_oa) == 208, "found %lld\n",
++	LASSERTF((int)sizeof(((struct ll_fiemap_info_key *)0)->lfik_oa) == 224, "found %lld\n",
+ 		 (long long)(int)sizeof(((struct ll_fiemap_info_key *)0)->lfik_oa));
+-	LASSERTF((int)offsetof(struct ll_fiemap_info_key, lfik_fiemap) == 216, "found %lld\n",
++	LASSERTF((int)offsetof(struct ll_fiemap_info_key, lfik_fiemap) == 232, "found %lld\n",
+ 		 (long long)(int)offsetof(struct ll_fiemap_info_key, lfik_fiemap));
+ 	LASSERTF((int)sizeof(((struct ll_fiemap_info_key *)0)->lfik_fiemap) == 32, "found %lld\n",
+ 		 (long long)(int)sizeof(((struct ll_fiemap_info_key *)0)->lfik_fiemap));
+diff -uprN old/lustre/ptlrpc/wiretest.c new/lustre/ptlrpc/wiretest.c
+--- old/lustre/ptlrpc/wiretest.c	2016-10-20 13:50:47.919000000 +0800
++++ new/lustre/ptlrpc/wiretest.c	2016-10-20 13:49:53.065000000 +0800
+@@ -1212,7 +1212,7 @@ void lustre_assert_wire_constants(void)
+ 		(unsigned)OBD_CKSUM_CRC32C);
+ 
+ 	/* Checks for struct obdo */
+-	LASSERTF((int)sizeof(struct obdo) == 208, "found %lld\n",
++	LASSERTF((int)sizeof(struct obdo) == 224, "found %lld\n",
+ 		 (long long)(int)sizeof(struct obdo));
+ 	LASSERTF((int)offsetof(struct obdo, o_valid) == 0, "found %lld\n",
+ 		 (long long)(int)offsetof(struct obdo, o_valid));
+@@ -1970,11 +1970,11 @@ void lustre_assert_wire_constants(void)
+ 		OBD_BRW_SOFT_SYNC);
+ 
+ 	/* Checks for struct ost_body */
+-	LASSERTF((int)sizeof(struct ost_body) == 208, "found %lld\n",
++	LASSERTF((int)sizeof(struct ost_body) == 224, "found %lld\n",
+ 		 (long long)(int)sizeof(struct ost_body));
+ 	LASSERTF((int)offsetof(struct ost_body, oa) == 0, "found %lld\n",
+ 		 (long long)(int)offsetof(struct ost_body, oa));
+-	LASSERTF((int)sizeof(((struct ost_body *)0)->oa) == 208, "found %lld\n",
++	LASSERTF((int)sizeof(((struct ost_body *)0)->oa) == 224, "found %lld\n",
+ 		 (long long)(int)sizeof(((struct ost_body *)0)->oa));
+ 
+ 	/* Checks for struct ll_fid */
+@@ -3878,7 +3878,7 @@ void lustre_assert_wire_constants(void)
+ 		 (long long)(int)sizeof(((struct llogd_conn_body *)0)->lgdc_ctxt_idx));
+ 
+ 	/* Checks for struct ll_fiemap_info_key */
+-	LASSERTF((int)sizeof(struct ll_fiemap_info_key) == 248, "found %lld\n",
++	LASSERTF((int)sizeof(struct ll_fiemap_info_key) == 264, "found %lld\n",
+ 		 (long long)(int)sizeof(struct ll_fiemap_info_key));
+ 	LASSERTF((int)offsetof(struct ll_fiemap_info_key, lfik_name[8]) == 8, "found %lld\n",
+ 		 (long long)(int)offsetof(struct ll_fiemap_info_key, lfik_name[8]));
+@@ -3886,9 +3886,9 @@ void lustre_assert_wire_constants(void)
+ 		 (long long)(int)sizeof(((struct ll_fiemap_info_key *)0)->lfik_name[8]));
+ 	LASSERTF((int)offsetof(struct ll_fiemap_info_key, lfik_oa) == 8, "found %lld\n",
+ 		 (long long)(int)offsetof(struct ll_fiemap_info_key, lfik_oa));
+-	LASSERTF((int)sizeof(((struct ll_fiemap_info_key *)0)->lfik_oa) == 208, "found %lld\n",
++	LASSERTF((int)sizeof(((struct ll_fiemap_info_key *)0)->lfik_oa) == 224, "found %lld\n",
+ 		 (long long)(int)sizeof(((struct ll_fiemap_info_key *)0)->lfik_oa));
+-	LASSERTF((int)offsetof(struct ll_fiemap_info_key, lfik_fiemap) == 216, "found %lld\n",
++	LASSERTF((int)offsetof(struct ll_fiemap_info_key, lfik_fiemap) == 232, "found %lld\n",
+ 		 (long long)(int)offsetof(struct ll_fiemap_info_key, lfik_fiemap));
+ 	LASSERTF((int)sizeof(((struct ll_fiemap_info_key *)0)->lfik_fiemap) == 32, "found %lld\n",
+ 		 (long long)(int)sizeof(((struct ll_fiemap_info_key *)0)->lfik_fiemap));

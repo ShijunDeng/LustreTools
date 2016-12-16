@@ -1,0 +1,13 @@
+Test cases for metric of QoS Rule Parser. Run ./autogen.sh to compile and
+run.
+
+It's strongly recommended to run the test cases in valgrind too:
+# valgrind --leak-check=full --show-reachable=yes ./check_qos_rules &> valgrind.out
+# grep -C 3 "(qos_rules.c" valgrind.out
+(to filter out false positives caused by libcheck)
+
+If you need to debug the program in gdb, use No Fork Mode of the check
+library:
+# CK_FORK=no libtool --mode=execute gdb ./check_qos_rules
+
+

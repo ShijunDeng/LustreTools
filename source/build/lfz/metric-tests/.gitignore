@@ -1,0 +1,17 @@
+.deps
+Makefile
+Makefile.in
+aclocal.m4
+autom4te.cache
+*.log
+check_qos_rules
+*.o
+compile
+config.*
+configure
+depcomp
+install-sh
+missing
+stamp-h1
+test-driver
+valgrind*

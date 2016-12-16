@@ -32,7 +32,7 @@ source "${MULTEXU_BATCH_CRTL_DIR}/multexu_lib.sh"
 print_message "MULTEXU_INFO" "Now start to compile-->install-->deploy lustre 2.8.0 ..."
 #基准目录
 base_dir=${MULTEXU_BASE_DIR}
-#kvm节点备份目录
+#kvm节点备份目录 备份节点配置：IP,root权限密码,免密码登陆认证,常用的个性化配置(屏幕、电源),
 kvm_source_bakpath=/home/ca21/DevelopmentFiles
 #kvm资源文件目录
 kvm_source_path=/home/ca21/Downloads
