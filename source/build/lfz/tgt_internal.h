@@ -42,7 +42,6 @@
 #include <lustre_fld.h>
 #include <lustre_req_layout.h>
 #include <lustre_sec.h>
-#include "lfz.h"
 extern int (*tgt_lfsck_in_notify)(const struct lu_env *env,
 				  struct dt_device *key,
 				  struct lfsck_request *lr,

@@ -17,15 +17,27 @@
 #在正式发布稳定版本时，可以使用diff命令生成的补丁文件，进行规范的补丁操作
 #
 
+#oss最大的带宽 单位bytes/sec
+oss_max_bandwidth=10485760
+#在配置文件${config_path}/${config_name}中给出oss_max_bandwidth的值
+#配置文件存储路径
+config_path="/tmp/lustre/"
+#配置文件名称
+config_name="lustre_tbf_cfg"
 #lustre/target/  修改已有文件
+
 yes | cp ${MULTEXU_SOURCE_DIR}/build/lfz/Makefile/lustre_target_Makefile.am lustre/target/Makefile.am
 yes | cp ${MULTEXU_SOURCE_DIR}/build/lfz/Makefile/lustre_target_Makefile.in lustre/target/Makefile.in
 yes | cp ${MULTEXU_SOURCE_DIR}/build/lfz/tgt_handler.c lustre/target/
 yes | cp ${MULTEXU_SOURCE_DIR}/build/lfz/tgt_main.c lustre/target/
 yes | cp ${MULTEXU_SOURCE_DIR}/build/lfz/tgt_internal.h lustre/target/
 
+#lustre/ptlrpc/
+yes | cp ${MULTEXU_SOURCE_DIR}/build/lfz/Makefile/lustre_ptlrpc_Makefile.in lustre/ptlrpc/Makefile.in
+
 #cp ${MULTEXU_SOURCE_DIR}/build/lfz/qos.h lustre/target/ 新增文件
 yes | cp ${MULTEXU_SOURCE_DIR}/build/lfz/lfz.h lustre/target/
+yes | cp ${MULTEXU_SOURCE_DIR}/build/lfz/lfz.c lustre/target/
 
 #lustre/
 cp -rf ${MULTEXU_SOURCE_DIR}/build/lfz/metric-tests lustre/
@@ -66,4 +78,7 @@ yes | cp ${MULTEXU_SOURCE_DIR}/build/lfz/lprocfs_counters.c lustre/obdclass/
 yes | cp ${MULTEXU_SOURCE_DIR}/build/lfz/Makefile/lustre_include_Makefile.am lustre/include/Makefile.am
 yes | cp ${MULTEXU_SOURCE_DIR}/build/lfz/Makefile/lustre_include_Makefile.in lustre/include/Makefile.in
 yes | cp ${MULTEXU_SOURCE_DIR}/build/lfz/Makefile/lustre_osc_Makefile.in lustre/osc/Makefile.in
-sh ${MULTEXU_BATCH_CRTL_DIR}/multexu.sh --iptable=nodes_all.out --cmd='touch /etc/lustre/lustre_tbf_cfg && echo 10485760 >  /etc/lustre/lustre_tbf_cfg'
+
+sh ${MULTEXU_BATCH_CRTL_DIR}/multexu.sh --iptable=nodes_all.out --cmd='mkdir -p ${config_path}'
+sh ${MULTEXU_BATCH_CRTL_DIR}/multexu.sh --iptable=nodes_all.out --cmd='touch ${config_path}/${config_name}'
+sh ${MULTEXU_BATCH_CRTL_DIR}/multexu.sh --iptable=nodes_all.out --cmd='echo ${oss_max_bandwidth} >  ${config_path}/${config_name}'

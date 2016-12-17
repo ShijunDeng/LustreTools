@@ -47,6 +47,7 @@
 #include <lustre_nodemap.h>
 
 #include "tgt_internal.h"
+#include "lfz.h"
 char *tgt_name(struct lu_target *tgt)
 {
 	LASSERT(tgt->lut_obd != NULL);

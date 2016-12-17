@@ -36,7 +36,7 @@
 #include <obd.h>
 #include "tgt_internal.h"
 #include "../ptlrpc/ptlrpc_internal.h"
-
+#include "lfz.h"
 static spinlock_t uncommitted_slc_locks_guard;
 static struct list_head uncommitted_slc_locks;
 

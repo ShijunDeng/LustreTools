@@ -283,6 +283,7 @@ print_message "MULTEXU_INFO" "Finished to distribute files..."
 
 sh ${MULTEXU_BATCH_CRTL_DIR}/multexu_ssh.sh  --clear_execute_statu_signal
 #安装lustre文件系统  注意确定是否安装新内核
+sh ${MULTEXU_BATCH_BUILD_DIR}/__config_lfz.sh #带宽限制配置文件
 sh ${MULTEXU_BATCH_INSTALL_DIR}/auto_lustre2.8.0_install.sh --skip_install_kernel=${skip_build_kernel}
 #等待安装完成
 local_check_status "${MULTEXU_STATUS_EXECUTE}"  "${sleeptime}" "${limit}"
