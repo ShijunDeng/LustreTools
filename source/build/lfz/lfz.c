@@ -78,7 +78,7 @@ void throttle_bandwidth(int bytes_transferred)
 
 	do_gettimeofday(&now);
 
-    printk("now:%lld,last:%lld\n",(long long)now.tv_sec,(long long)tbf_counter.last_time.tv_sec);
+    //printk("now:%lld,last:%lld\n",(long long)now.tv_sec,(long long)tbf_counter.last_time.tv_sec);
 	if (likely(now.tv_sec < tbf_counter.last_time.tv_sec))
 	{
 		goto out;
@@ -88,9 +88,9 @@ void throttle_bandwidth(int bytes_transferred)
 		tbf_counter.last_time = now;
 		tbf_counter.resid_tbf = tbf_counter.total_tbf_rate;
 	}
-    printk("bytes_transferred:%d\n",bytes_transferred);
-    printk("tbf_counter.resid_tbf:%lld\n",tbf_counter.resid_tbf);
-    printk("tbf_counter.total_tbf_rate:%lld\n",tbf_counter.total_tbf_rate);
+    //printk("bytes_transferred:%d\n",bytes_transferred);
+    //printk("tbf_counter.resid_tbf:%lld\n",tbf_counter.resid_tbf);
+    //printk("tbf_counter.total_tbf_rate:%lld\n",tbf_counter.total_tbf_rate);
 
 	if(unlikely(tbf_counter.resid_tbf-bytes_transferred < 0))
 	{
@@ -107,8 +107,8 @@ out:
 	{
 		return;
 	}
-    printk("sleep:%ld\n",need_sleep_usec);
-    printk("\n");
+    //printk("sleep:%ld\n",need_sleep_usec);
+    //printk("\n");
 
 	udelay(need_sleep_usec);
 }
