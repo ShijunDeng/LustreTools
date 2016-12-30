@@ -6,7 +6,11 @@
 #      email:    dengshijun1992@gmail.com
 #	time:    2016-07-19
 #
-function __init()
+
+#
+#MULTEXU环境变量初始化,注意__multexu_init应该最先调用
+#
+function __multexu_init()
 {
 	export PATH="/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin"
 	export LANG="en_US.UTF-8"
@@ -26,14 +30,45 @@ function __init()
 	export MULTEXU_BATCH_LMT_DIR="${MULTEXU_BATCH_DIR}/lmt"
 	export MULTEXU_BATCH_TEST_DIR="${MULTEXU_BATCH_DIR}/test"
 	
-	export PAUSE_CMD="sleep 3s"
-
-	export MULTEXU_STATUS_REBOOT="REBOOT" #重启状态过程
-	export MULTEXU_STATUS_EXECUTE="EXECUTE" #执行过程
+	export MULTEXU_SOURCE_BUILD_DIR="${MULTEXU_SOURCE_DIR}/build"
+	export MULTEXU_SOURCE_INSTALL_DIR="${MULTEXU_SOURCE_DIR}/install"
+	export MULTEXU_SOURCE_LMT_DIR="${MULTEXU_SOURCE_DIR}/lmt"
+	export MULTEXU_SOURCE_TOOL_DIR="${MULTEXU_SOURCE_DIR}/tool"
 	
-	export EXECUTE_STATUS_SIGNAL="${MULTEXU_BATCH_CONFIG_DIR}/multexu.tmp" #执行过程中的信号处理
+	export PAUSE_CMD="sleep 3s"
+	
+	#重启状态过程
+	export MULTEXU_STATUS_REBOOT="REBOOT" 
+	#执行过程
+	export MULTEXU_STATUS_EXECUTE="EXECUTE" 
+	
+	#执行过程中的信号处理,存储信号的共享文件
+	export EXECUTE_STATUS_SIGNAL="${MULTEXU_BATCH_CONFIG_DIR}/multexu.tmp" 
+}
+
+#
+#	分布式文件系统自动I/O拥塞控制
+#	distributed filesystem automatic I/O congestion control
+#	AIOCC
+#
+function __aiocc_init()
+{			
+	export AIOCC_BASE_DIR="${MULTEXU_BASE_DIR}/aiocc"
+	export AIOCC_RULE_DIR="${AIOCC_BASE_DIR}/rule"
+	export AIOCC_RULE_CANDIDATE_DIR="${AIOCC_RULE_DIR}/candidate"
+	 
+}
+
+#
+#调用所有的初始化操作
+#
+function __init()
+{
+	#调用MULTEXU系统初始化
+	__multexu_init
+	__aiocc_init
 }
 
 ##################
-
 __init
+

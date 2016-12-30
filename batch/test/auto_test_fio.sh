@@ -169,7 +169,7 @@ do
                 special_cmd_io_choice=${special_cmd}
             fi
 
-            cmdvar="${MULTEXU_SOURCE_DIR}/tool/fio/fio -directory=${directory} -direct=${direct} -iodepth ${iodepth} -thread -rw=${rw_pattern} ${special_cmd_io_choice} -allow_mounted_write=${allow_mounted_write} -ioengine=${ioengine} -bs=${blocksize}k -size=${size} -numjobs=${numjobs} -runtime=${runtime} -group_reporting -name=${name} "
+            cmdvar="${MULTEXU_SOURCE_TOOL_DIR}/fio/fio -directory=${directory} -direct=${direct} -iodepth ${iodepth} -thread -rw=${rw_pattern} ${special_cmd_io_choice} -allow_mounted_write=${allow_mounted_write} -ioengine=${ioengine} -bs=${blocksize}k -size=${size} -numjobs=${numjobs} -runtime=${runtime} -group_reporting -name=${name} "
             print_message "MULTEXU_ECHO" "		test command:${cmdvar}"
             #删除测试文件
             sh ${MULTEXU_BATCH_CRTL_DIR}/multexu.sh --iptable=${client_ip} --cmd="rm -f ${directory}/*"

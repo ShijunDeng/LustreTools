@@ -24,8 +24,8 @@ MOLOKAI_DIR="molokai"
 echo "MULTEXU INFO: install molokai automatically..."
 `${PAUSE_CMD}`
 
-cd ${MULTEXU_SOURCE_DIR}
-echo "MULTEXU INFO:enter the directory ${MULTEXU_SOURCE_DIR}"
+cd ${MULTEXU_SOURCE_TOOL_DIR}
+echo "MULTEXU INFO:enter the directory ${MULTEXU_SOURCE_TOOL_DIR}"
 git clone ${molokai_gitaddr}
 wait
 

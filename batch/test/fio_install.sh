@@ -23,10 +23,10 @@ clear_execute_statu_signal
 #
 #如果fio目录存在,表示fio已经解压安装过;否则进行解压安装;
 #
-if [ ! -d ${MULTEXU_SOURCE_DIR}/tool/fio ] ;
+if [ ! -d ${MULTEXU_SOURCE_TOOL_DIR}/fio ] ;
 then
     print_message "MULTEXU_INFO" "now start to install fio..."
-    cd ${MULTEXU_SOURCE_DIR}/tool/
+    cd ${MULTEXU_SOURCE_TOOL_DIR}/
 
     yum -y install gtk2-devel 
     yum -y install glib2-devel

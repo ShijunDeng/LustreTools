@@ -21,7 +21,7 @@
 oss_max_bandwidth=10485760
 #在配置文件${config_path}/${config_name}中给出oss_max_bandwidth的值
 #配置文件存储路径
-config_path="/tmp/lustre/"
+config_path="/tmp/lustre"
 #配置文件名称
 config_name="lustre_tbf_cfg"
 #lustre/target/  修改已有文件

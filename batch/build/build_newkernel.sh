@@ -63,7 +63,7 @@ print_message "MULTEXU_INFO" "install dependencies..."
 #wget http://mirror.centos.org/centos/7/os/x86_64/Packages/newt-devel-0.52.15-4.el7.x86_64.rpm
 #wget http://mirror.centos.org/centos/7/os/x86_64/Packages/slang-devel-2.2.4-11.el7.x86_64.rpm
 #wget http://mirror.centos.org/centos/7/os/x86_64/Packages/asciidoc-8.6.8-5.el7.noarch.rpm
-yum -y --nogpgcheck localinstall ${MULTEXU_SOURCE_DIR}/build/newt-devel-0.52.15-4.el7.x86_64.rpm ${MULTEXU_SOURCE_DIR}/build/slang-devel-2.2.4-11.el7.x86_64.rpm  ${MULTEXU_SOURCE_DIR}/build/asciidoc-8.6.8-5.el7.noarch.rpm 
+yum -y --nogpgcheck localinstall ${MULTEXU_SOURCE_BUILD_DIR}/newt-devel-0.52.15-4.el7.x86_64.rpm ${MULTEXU_SOURCE_BUILD_DIR}/slang-devel-2.2.4-11.el7.x86_64.rpm  ${MULTEXU_SOURCE_BUILD_DIR}/asciidoc-8.6.8-5.el7.noarch.rpm 
 sleep ${sleeptime}s
 yum -y groupinstall "Development Tools"
 sleep ${sleeptime}s
@@ -105,16 +105,16 @@ sleep ${sleeptime}s
 wait
 
 #wget https://mirrors.ustc.edu.cn/fedora/epel/7/x86_64/e/epel-release-7-8.noarch.rpm
-rpm -ivh ${MULTEXU_SOURCE_DIR}/build/epel-release-7-8.noarch.rpm 
+rpm -ivh ${MULTEXU_SOURCE_BUILD_DIR}/epel-release-7-8.noarch.rpm 
 
 print_message "MULTEXU_INFO" "Now start to rpmbuild kernel ..."
 echo '%_topdir %(echo $HOME)/kernel/rpmbuild' > ~/.rpmmacros
 #
 #rpm -ivh kernel-3.10.0-327.3.1.el7_lustre.src.rpm  2>&1 | grep -v exist
 #
-rpm -ivh ${MULTEXU_SOURCE_DIR}/build/kernel-3.10.0-327.3.1.el7_lustre.src.rpm  2>&1 | grep -v exist
+rpm -ivh ${MULTEXU_SOURCE_BUILD_DIR}/kernel-3.10.0-327.3.1.el7_lustre.src.rpm  2>&1 | grep -v exist
 wait
-rpm -ivh ${MULTEXU_SOURCE_DIR}/build/lustre-2.8.0-3.10.0_327.3.1.el7_lustre.x86_64.src.rpm  2>&1 | grep -v exist
+rpm -ivh ${MULTEXU_SOURCE_BUILD_DIR}/lustre-2.8.0-3.10.0_327.3.1.el7_lustre.x86_64.src.rpm  2>&1 | grep -v exist
 wait
 print_message "MULTEXU_INFO" "Now start to rpmbuild kernel ..."
 
@@ -143,7 +143,7 @@ yes | cp "${BUILD_BASE_DIR}"/BUILD/lustre-2.8.0/lustre/kernel_patches/kernel_con
 #.config已经是我们配置(lustre提供的就可以)好的,这样在自动化的脚本中就不需要再进行确认,直接进行编译工作
 #
 #yes | cp "${BUILD_BASE_DIR}"/BUILD/lustre-2.8.0/lustre/kernel_patches/kernel_configs/.config ./.config
-yes | cp ${MULTEXU_SOURCE_DIR}/build/raid5-mmp-unplug-dev-3.7.patch "${BUILD_BASE_DIR}"/BUILD/lustre-2.8.0/lustre/kernel_patches/patches/
+yes | cp ${MULTEXU_SOURCE_BUILD_DIR}/raid5-mmp-unplug-dev-3.7.patch "${BUILD_BASE_DIR}"/BUILD/lustre-2.8.0/lustre/kernel_patches/patches/
 
 #
 #注意根据版本正确选择 xxx.series

@@ -62,7 +62,7 @@ if [ ${skip_install_dependency} -eq 0 ];then
     #wget http://mirror.centos.org/centos/7/os/x86_64/Packages/newt-devel-0.52.15-4.el7.x86_64.rpm
     #wget http://mirror.centos.org/centos/7/os/x86_64/Packages/slang-devel-2.2.4-11.el7.x86_64.rpm
     #wget http://mirror.centos.org/centos/7/os/x86_64/Packages/asciidoc-8.6.8-5.el7.noarch.rpm
-    yum --nogpgcheck localinstall ${MULTEXU_SOURCE_DIR}/build/newt-devel-0.52.15-4.el7.x86_64.rpm ${MULTEXU_SOURCE_DIR}/build/slang-devel-2.2.4-11.el7.x86_64.rpm  ${MULTEXU_SOURCE_DIR}/build/asciidoc-8.6.8-5.el7.noarch.rpm 
+    yum --nogpgcheck localinstall ${MULTEXU_SOURCE_BUILD_DIR}/newt-devel-0.52.15-4.el7.x86_64.rpm ${MULTEXU_SOURCE_BUILD_DIR}/slang-devel-2.2.4-11.el7.x86_64.rpm  ${MULTEXU_SOURCE_BUILD_DIR}/asciidoc-8.6.8-5.el7.noarch.rpm 
     sleep ${sleeptime}s
     yum -y groupinstall "Development Tools"
     sleep ${sleeptime}s
@@ -104,11 +104,11 @@ if [ ${skip_install_dependency} -eq 0 ];then
     wait
 
     #wget https://mirrors.ustc.edu.cn/fedora/epel/7/x86_64/e/epel-release-7-8.noarch.rpm
-    rpm -ivh ${MULTEXU_SOURCE_DIR}/build/epel-release-7-8.noarch.rpm 
+    rpm -ivh ${MULTEXU_SOURCE_BUILD_DIR}/epel-release-7-8.noarch.rpm 
 fi
 
 echo '%_topdir %(echo $HOME)/kernel/rpmbuild' > ~/.rpmmacros
-rpm -ivh ${MULTEXU_SOURCE_DIR}/build/lustre-client-2.8.0-3.10.0_327.3.1.el7.x86_64.src.rpm  2>&1 | grep -v exist
+rpm -ivh ${MULTEXU_SOURCE_BUILD_DIR}/lustre-client-2.8.0-3.10.0_327.3.1.el7.x86_64.src.rpm  2>&1 | grep -v exist
 wait
 print_message "MULTEXU_INFO" "Now start to rpmbuild  lustre(client)..."
 
@@ -120,8 +120,8 @@ wait
 cd "${BUILD_BASE_DIR}"/BUILD/lustre-2.8.0/
 
 print_message "MULTEXU_INFO" "now start to patch the lustre ..."
-#patch -p1 < ${MULTEXU_SOURCE_DIR}/build/lustre_nrs_sscdt.patch
-#patch -p1 < ${MULTEXU_SOURCE_DIR}/build/lustre_qos.patch
+#patch -p1 < ${MULTEXU_SOURCE_BUILD_DIR}/lustre_nrs_sscdt.patch
+#patch -p1 < ${MULTEXU_SOURCE_BUILD_DIR}/lustre_qos.patch
 `${PAUSE_CMD}`
 print_message "MULTEXU_INFO" "now start to run _patch_lustre.sh..."
 sh ${MULTEXU_BATCH_BUILD_DIR}/_patch_lustre.sh

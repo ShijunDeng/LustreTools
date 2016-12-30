@@ -171,7 +171,7 @@ fi
 print_message "MULTEXU_INFO" "removing the old files..."
 sh ${MULTEXU_BATCH_CRTL_DIR}/multexu.sh --iptable=${compile_node_ip} --cmd="rm -rf ${base_dir}/Fdm-LustreQoS"
 sh ${MULTEXU_BATCH_CRTL_DIR}/multexu.sh --iptable=${compile_node_ip} --cmd='rm -rf /root/kernel/rpmbuild/BUILD/lustre-2.8.0/*'
-rm -f ${MULTEXU_SOURCE_DIR}/install/lustre-*
+rm -f ${MULTEXU_SOURCE_INSTALL_DIR}/lustre-*
 `${PAUSE_CMD}`
 `${PAUSE_CMD}`
 
@@ -252,7 +252,7 @@ print_message "MULTEXU_INFO" "the node ${compile_node_ip} finished to compile lu
 
 
 #复制编译生成的lustre server rpm包到指定目录
-sh ${MULTEXU_BATCH_CRTL_DIR}/multexu.sh --iptable=${compile_node_ip} --cmd="yes | cp /root/kernel/rpmbuild/BUILD/lustre-2.8.0/*.rpm ${MULTEXU_SOURCE_DIR}/install/ "
+sh ${MULTEXU_BATCH_CRTL_DIR}/multexu.sh --iptable=${compile_node_ip} --cmd="yes | cp /root/kernel/rpmbuild/BUILD/lustre-2.8.0/*.rpm ${MULTEXU_SOURCE_INSTALL_DIR}/ "
 `${PAUSE_CMD}`
 `${PAUSE_CMD}`
 
@@ -266,13 +266,13 @@ print_message "MULTEXU_INFO" "the node ${compile_node_ip} finished to compile lu
 
 #复制编译生成的lustre client rpm包到编译节点指定目录
 print_message "MULTEXU_INFO" "Collecting files..."
-sh ${MULTEXU_BATCH_CRTL_DIR}/multexu.sh --iptable=${compile_node_ip} --cmd="yes | cp /root/kernel/rpmbuild/BUILD/lustre-2.8.0/*.rpm ${MULTEXU_SOURCE_DIR}/install/ "
+sh ${MULTEXU_BATCH_CRTL_DIR}/multexu.sh --iptable=${compile_node_ip} --cmd="yes | cp /root/kernel/rpmbuild/BUILD/lustre-2.8.0/*.rpm ${MULTEXU_SOURCE_INSTALL_DIR}/ "
 print_message "MULTEXU_INFO" "Finished to collect files..."
 `${PAUSE_CMD}`
 `${PAUSE_CMD}`
 
 #从编译节点compile_node_ip复制编译好的lustre rpm包回到当前节点 也即控制节点
-scp root@${compile_node_ip}:${MULTEXU_SOURCE_DIR}/install/* ${MULTEXU_SOURCE_DIR}/install/
+scp root@${compile_node_ip}:${MULTEXU_SOURCE_INSTALL_DIR}/* ${MULTEXU_SOURCE_INSTALL_DIR}/
 sleep ${sleeptime}s
 
 #分发文件到各个节点
@@ -283,7 +283,7 @@ print_message "MULTEXU_INFO" "Finished to distribute files..."
 
 sh ${MULTEXU_BATCH_CRTL_DIR}/multexu_ssh.sh  --clear_execute_statu_signal
 #安装lustre文件系统  注意确定是否安装新内核
-sh ${MULTEXU_BATCH_BUILD_DIR}/__config_lfz.sh #带宽限制配置文件
+#sh ${MULTEXU_BATCH_BUILD_DIR}/__config_lfz.sh #带宽限制配置文件
 sh ${MULTEXU_BATCH_INSTALL_DIR}/auto_lustre2.8.0_install.sh --skip_install_kernel=${skip_build_kernel}
 #等待安装完成
 local_check_status "${MULTEXU_STATUS_EXECUTE}"  "${sleeptime}" "${limit}"

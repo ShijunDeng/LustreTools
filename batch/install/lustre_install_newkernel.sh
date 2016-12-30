@@ -29,7 +29,7 @@ print_message "MULTEXU_INFO" "finished installing dependencies..."
 
 `${PAUSE_CMD}`
 
-cd "${MULTEXU_SOURCE_DIR}"/install
+cd ${MULTEXU_SOURCE_INSTALL_DIR}
 print_message "MULTEXU_INFO" "enter directory ${MULTEXU_SOURCE_DIR}..."
 print_message "MULTEXU_INFO" "1. rpm -ivh --force kernel-3.10.0_3.10.0_327.3.1.el7_lustre.x86_64-1.x86_64.rpm"
 print_message "MULTEXU_INFO" "2. /sbin/new-kernel-pkg --package kernel --mkinitrd --dracut --depmod --install 3.10.0-3.10.0-327.3.1.el7_lustre.x86_64"

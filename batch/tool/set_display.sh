@@ -32,6 +32,6 @@ function change_drsize()
     sudo xrandr --output VGA-0 --mode "${drsize_x}x${drsize_y}"    
 }
 
-print_message "MULTEXU_INFO" "change display resolution size......"
+print_message "MULTEXU_INFO" "change display resolution size..."
 change_drsize $@
-print_message "MULTEXU_INFO" "finished to change display resolution size......"
+print_message "MULTEXU_INFO" "finished to change display resolution size..."
