@@ -13,6 +13,6 @@
 #
 
 #自定义补丁操作和相应的补丁文件
-sh ${MULTEXU_BATCH_BUILD_DIR}/__patch_lfz.sh
-#sh ${MULTEXU_BATCH_BUILD_DIR}/__patch_metric.sh
+#sh ${MULTEXU_BATCH_BUILD_DIR}/__patch_lfz.sh
+sh ${MULTEXU_BATCH_BUILD_DIR}/__patch_metric.sh
 exit 0

@@ -56,7 +56,7 @@ function __aiocc_init()
 	export AIOCC_BASE_DIR="${MULTEXU_BASE_DIR}/aiocc"
 	export AIOCC_RULE_DIR="${AIOCC_BASE_DIR}/rule"
 	export AIOCC_RULE_CANDIDATE_DIR="${AIOCC_RULE_DIR}/candidate"
-	 
+	export AIOCC_RULE_DATABASE_DIR="${AIOCC_RULE_DIR}/database" 
 }
 
 #

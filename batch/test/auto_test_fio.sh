@@ -36,7 +36,7 @@ direct=0
 iodepth=5
 allow_mounted_write=1
 ioengine="sync"
-special_cmd='-rwmixread=50' #随机IO时的一些特殊参数
+special_cmd="-rwmixread=50" #随机IO时的一些特殊参数
 size="1G"
 numjobs=2
 runtime=600

@@ -25,6 +25,6 @@ config_path="/tmp/lustre"
 #配置文件名称
 config_name="lustre_tbf_cfg"
 #lustre/target/  修改已有文件
-sh ${MULTEXU_BATCH_CRTL_DIR}/multexu.sh --iptable=nodes_all.out --cmd='mkdir -p ${config_path}'
-sh ${MULTEXU_BATCH_CRTL_DIR}/multexu.sh --iptable=nodes_all.out --cmd='touch ${config_path}/${config_name}'
-sh ${MULTEXU_BATCH_CRTL_DIR}/multexu.sh --iptable=nodes_all.out --cmd='echo ${oss_max_bandwidth} >  ${config_path}/${config_name}'
+sh ${MULTEXU_BATCH_CRTL_DIR}/multexu.sh --iptable=nodes_all.out --cmd="mkdir -p ${config_path}"
+sh ${MULTEXU_BATCH_CRTL_DIR}/multexu.sh --iptable=nodes_all.out --cmd="touch ${config_path}/${config_name}"
+sh ${MULTEXU_BATCH_CRTL_DIR}/multexu.sh --iptable=nodes_all.out --cmd="echo ${oss_max_bandwidth} >  ${config_path}/${config_name}"

@@ -31,11 +31,13 @@ else
 fi
 
 source "${MULTEXU_BATCH_CRTL_DIR}/multexu_lib.sh"
+clear_execute_statu_signal 
+
+OS_TYPE="X64"
+MAX_INT=18446744073709551615
+
 
 #参数选项
-
-
-
 while :;
 do
     case $1 in
@@ -65,6 +67,20 @@ do
 	esac		
 done
 
+funciton __initialize()
+{
+	if [ $(getconf WORD_BIT) = '32' ] && [ $(getconf LONG_BIT) = '64' ] ; then
+		OS_TYPE="X64"
+		MAX_INT=18446744073709551615
+	else
+		OS_TYPE="X32"
+		MAX_INT=2147483647
+		print_message "MULTEXU_WARN" "Pay attention to that OS_TYPE:${OS_TYPE}"
+	fi
+	
+	
+}
+
 function benchmark_rule() 
 {
 
@@ -80,7 +96,22 @@ function get_best_score()
 #										开始AIOCC											
 #############################################################################################
 print_message "MULTEXU_INFO" "Now start AIOCC ..."
-print_message "MULTEXU_INFO" "Now start AIOCC ..."
+
+#
+#1,2
+#0,2147483647,0,2147483647,0,2147483647,-1,0,20000
+#参数意义：rule
+#rule_no,rules_per_sec,ack_ewma_lower,ack_ewma_upper,send_ewma_lower,send_ewma_upper,rtt_ratio100_lower,rtt_ratio100_upper,m100,b100,tau
+#
+
+initial_rule=(1 2 0 2147483647 0 2147483647 0 2147483647 -1 0 20000)
+cat >${CANDIDATES_DIR}/0 <<EOF
+1,2
+0,2147483647,0,2147483647,0,2147483647,-1,0,20000
+EOF
+  
+
+
 
 
 

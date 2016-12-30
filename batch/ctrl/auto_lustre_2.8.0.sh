@@ -170,7 +170,7 @@ fi
 #删除旧文件
 print_message "MULTEXU_INFO" "removing the old files..."
 sh ${MULTEXU_BATCH_CRTL_DIR}/multexu.sh --iptable=${compile_node_ip} --cmd="rm -rf ${base_dir}/Fdm-LustreQoS"
-sh ${MULTEXU_BATCH_CRTL_DIR}/multexu.sh --iptable=${compile_node_ip} --cmd='rm -rf /root/kernel/rpmbuild/BUILD/lustre-2.8.0/*'
+sh ${MULTEXU_BATCH_CRTL_DIR}/multexu.sh --iptable=${compile_node_ip} --cmd="rm -rf /root/kernel/rpmbuild/BUILD/lustre-2.8.0/*"
 rm -f ${MULTEXU_SOURCE_INSTALL_DIR}/lustre-*
 `${PAUSE_CMD}`
 `${PAUSE_CMD}`
@@ -290,8 +290,8 @@ local_check_status "${MULTEXU_STATUS_EXECUTE}"  "${sleeptime}" "${limit}"
 print_message "MULTEXU_INFO" "the current node finished to execute auto_lustre2.8.0_install.sh..."
 
 #设置printk级别 清除无用日志信息 方便输出调试信息
-sh ${MULTEXU_BATCH_CRTL_DIR}/multexu.sh --iptable=nodes_all.out --cmd='echo 8 > /proc/sys/kernel/printk'
-sh ${MULTEXU_BATCH_CRTL_DIR}/multexu.sh --iptable=nodes_all.out --cmd='dmesg --clear'
+sh ${MULTEXU_BATCH_CRTL_DIR}/multexu.sh --iptable=nodes_all.out --cmd="echo 8 > /proc/sys/kernel/printk"
+sh ${MULTEXU_BATCH_CRTL_DIR}/multexu.sh --iptable=nodes_all.out --cmd="dmesg --clear"
 
 #部署文件系统
 sh ${MULTEXU_BATCH_CRTL_DIR}/multexu_ssh.sh  --clear_execute_statu_signal
