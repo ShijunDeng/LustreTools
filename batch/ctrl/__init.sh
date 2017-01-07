@@ -35,6 +35,8 @@ function __multexu_init()
 	export MULTEXU_SOURCE_LMT_DIR="${MULTEXU_SOURCE_DIR}/lmt"
 	export MULTEXU_SOURCE_TOOL_DIR="${MULTEXU_SOURCE_DIR}/tool"
 	
+	export MULTEXU_CLIENT_MNT_DIR="/mnt/lustre"
+	
 	export PAUSE_CMD="sleep 3s"
 	
 	#重启状态过程
@@ -46,29 +48,6 @@ function __multexu_init()
 	export EXECUTE_STATUS_SIGNAL="${MULTEXU_BATCH_CONFIG_DIR}/multexu.tmp" 
 }
 
-#
-#	分布式文件系统自动I/O拥塞控制
-#	distributed filesystem automatic I/O congestion control
-#	AIOCC
-#
-function __aiocc_init()
-{			
-	export AIOCC_BASE_DIR="${MULTEXU_BASE_DIR}/aiocc"
-	export AIOCC_RULE_DIR="${AIOCC_BASE_DIR}/rule"
-	export AIOCC_RULE_CANDIDATE_DIR="${AIOCC_RULE_DIR}/candidate"
-	export AIOCC_RULE_DATABASE_DIR="${AIOCC_RULE_DIR}/database" 
-}
-
-#
-#调用所有的初始化操作
-#
-function __init()
-{
-	#调用MULTEXU系统初始化
-	__multexu_init
-	__aiocc_init
-}
-
 ##################
-__init
+__multexu_init
 

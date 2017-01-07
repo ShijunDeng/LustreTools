@@ -163,7 +163,7 @@ sh ${MULTEXU_BATCH_CRTL_DIR}/multexu.sh --iptable=nodes_oss.out --cmd="sh ${MULT
 
 #配置client node
 print_message "MULTEXU_INFO" "configure client nodes..."
-sh ${MULTEXU_BATCH_CRTL_DIR}/multexu.sh --iptable=nodes_client.out --cmd="sh ${MULTEXU_BATCH_DEPLOY_DIR}/__configure_clientnode.sh -s ${mdsnode} -m lustre"
+sh ${MULTEXU_BATCH_CRTL_DIR}/multexu.sh --iptable=nodes_client.out --cmd="sh ${MULTEXU_BATCH_DEPLOY_DIR}/__configure_clientnode.sh -s ${mdsnode} -m ${MULTEXU_CLIENT_MNT_DIR}"
 ssh_check_cluster_status "nodes_client.out" "${MULTEXU_STATUS_EXECUTE}"  $((sleeptime/2)) "${limit}"
 print_message "MULTEXU_INFO" "finished configuring client nodes ..."
 #清除信号量  避免干扰

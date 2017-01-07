@@ -20,25 +20,29 @@ fi
 
 #
 #往通信文件中写入一个信号变量
+#$1 signal content
+#$2 signal file name,默认值"${EXECUTE_STATUS_SIGNAL}"
 #
 function send_execute_statu_signal()
 {
-    local signal_content=$1
-    if [ ! -f "${EXECUTE_STATUS_SIGNAL}" ]; then
-        touch "${EXECUTE_STATUS_SIGNAL}"
-    fi
-    echo "${signal_content}" > "${EXECUTE_STATUS_SIGNAL}"
+	if [ -n "$2" ];then
+		echo "$1" > "$2"
+	else
+		send_execute_statu_signal $1 "${EXECUTE_STATUS_SIGNAL}"
+	fi
 }
 
 #
 #清空通信文件中的信号变量
+#$1 signal file name,默认值"${EXECUTE_STATUS_SIGNAL}"
 #
 function clear_execute_statu_signal()
 {
-    if [ ! -f "${EXECUTE_STATUS_SIGNAL}" ]; then
-	    touch "${EXECUTE_STATUS_SIGNAL}"
-    fi
-        echo "" > "${EXECUTE_STATUS_SIGNAL}"	
+    if [ -n "$1" ];then
+		: > "$1"
+	else
+		clear_execute_statu_signal "${EXECUTE_STATUS_SIGNAL}"
+	fi	
 }
 
 #
@@ -126,7 +130,7 @@ function ssh_check_cluster_status()
             loop=0;
             print_message "MULTEXU_INFO" "the state of nodes which its ip in ${iptable}:[ ${status}],the next check time will be ${sleeptime}s later..."
             sleep ${sleeptime}s
-            for host_ip in $(cat  "${MULTEXU_BATCH_CONFIG_DIR}/${iptable}")
+            for host_ip in $(cat "${MULTEXU_BATCH_CONFIG_DIR}/${iptable}")
             do
                 local retval=
                 ssh_get_execute_statu_signal "${host_ip}" retval
@@ -206,7 +210,7 @@ function ping_check_cluster_livestat()
             loop=0;
             print_message "MULTEXU_INFO" "the state of nodes which its ip in ${iptable}:[${status}],the next check time will be ${sleeptime}s later..."
             sleep ${sleeptime}s
-            for host_ip in $(cat  "${MULTEXU_BATCH_CONFIG_DIR}/${iptable}")
+            for host_ip in $(cat "${MULTEXU_BATCH_CONFIG_DIR}/${iptable}")
             do
                 local retval=
                 ping_get_node_livestat "${host_ip}" retval
@@ -224,7 +228,31 @@ function ping_check_cluster_livestat()
         done
 }
 
-
+#
+#根据$2选项参数,自动创建$1参数指定的目录(一律使用mkdir -p):
+#force创建目录之前先检测是否存在:若存在先删除旧目录后创建,否则直接创建新目录
+#weak创建目录之前先检测是否存在:若存在不创建,否则创建新目录
+#$2若未明确给出,默认为weak
+#
+function auto_mkdir()
+{
+	#$1 dirname $2 option
+	if [ $# -lt 1 ];then
+		return
+	fi
+	if [ $# -eq 1 -o "$2"x == "weak"x ];then
+		if [ ! -d $1 ];then
+			mkdir -p $1
+			return
+		fi
+	fi
+	if [ $# -eq 2 -a "$2"x == "force"x ];then
+		if [ -d $1 ];then
+			rm -rf $1
+		fi
+		auto_mkdir $1 "weak"
+	fi	
+}
 
 #
 #输出程序的提示信息
