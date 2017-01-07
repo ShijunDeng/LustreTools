@@ -57,9 +57,7 @@ ip=`ifconfig|grep "inet addr:"|grep -v "127.0.0.1"|cut -d: -f2|awk '{print $1}'`
 mkfs.lustre --fsname=lustrefs --mgsnode=$mdsnode@tcp --ost --index=$index $devname
 wait
 
-if [ ! -d "/mnt/${mnt_position}" ]; then
-    mkdir "/mnt/${mnt_position}"
-fi
+auto_mkdir "/mnt/${mnt_position}" "weak" 
 
 mount -t lustre ${devname} "/mnt/${mnt_position}"
 wait

@@ -50,10 +50,7 @@ fi
 mkfs.lustre --fsname=lustrefs --mgs --mdt --index=$index $devname
 wait
 
-
-if [ ! -d "/mnt/${mnt_position}" ]; then
-    mkdir /mnt/${mnt_position}
-fi
+auto_mkdir "/mnt/${mnt_position}" "weak" 
 
 mount -t lustre ${devname} /mnt/$mnt_position
 wait

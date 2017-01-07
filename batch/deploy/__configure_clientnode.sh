@@ -31,9 +31,8 @@ do
     esac
 done
 
-if [ ! -d "${client_mnt_dir}" ]; then
-    mkdir ${client_mnt_dir}
-fi
+auto_mkdir "${client_mnt_dir}" "weak" 
+
 print_message "MULTEXU_INFO" "client [${ip}] mount -t lustre ${mdsnode}@tcp:/lustrefs ${client_mnt_dir}"
 mount -t lustre ${mdsnode}@tcp:/lustrefs ${client_mnt_dir}
 wait
