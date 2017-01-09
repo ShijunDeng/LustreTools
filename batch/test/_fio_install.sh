@@ -16,7 +16,6 @@ else
 fi
 
 source "${MULTEXU_BATCH_CRTL_DIR}/multexu_lib.sh"
-`${PAUSE_CMD}`
 #清除信号量  避免干扰
 clear_execute_statu_signal
 
