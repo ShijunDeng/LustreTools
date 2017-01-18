@@ -1,7 +1,7 @@
  #!/bin/bash
 # POSIX
 #
-#description:    install GNU parallel shell tool
+#description:    install pip
 #     author:    ShijunDeng
 #      email:    dengshijun1992@gmail.com
 #       time:    2017-01-11
@@ -18,18 +18,25 @@ fi
 source "${MULTEXU_BATCH_CRTL_DIR}/multexu_lib.sh"
 clear_execute_statu_signal
 
-print_message "MULTEXU_INFO" "Now start to install GNU parallel shell tool..."
+print_message "MULTEXU_INFO" "Now start to update python..."
 cd ${MULTEXU_SOURCE_TOOL_DIR}
 print_message "MULTEXU_INFO" "Entering directory ${MULTEXU_SOURCE_TOOL_DIR}..."
-
-tar -jxvf parallel-20161222.tar.bz2
-cd parallel-20161222
-./configure 
-make
-make install
+#install setuptools-32
+unzip -o setuptools-32.3.1.zip 
+cd setuptools-32.3.1/
+python easy_install.py 
 wait
-rm -rf  parallel-20161222
+python setup.py buil
+wait
+python setup.py install
+wait
+cd ../
+#install pip
+tar -xvf pip-9.0.1.tar.gz 
+cd pip-9.0.1/
+python setup.py install
 
-send_execute_statu_signal "${MULTEXU_STATUS_EXECUTE}"
+ln -s /usr/local/python3.5.2/bin/pip /usr/bin/pip
+
 print_message "MULTEXU_INFO" "Leaving directory ${MULTEXU_SOURCE_TOOL_DIR}..."
-print_message "MULTEXU_INFO" "finished to install GNU parallel shell tool..."
+print_message "MULTEXU_INFO" "finished to install pip..."

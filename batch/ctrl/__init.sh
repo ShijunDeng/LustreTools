@@ -19,7 +19,8 @@ function __multexu_init()
 	export MULTEXU_SOURCE_DIR="${MULTEXU_BASE_DIR}/source"
 	export MULTEXU_BATCH_DIR="${MULTEXU_BASE_DIR}/batch"
 	export MULTEXU_CODE_DIR="${MULTEXU_BASE_DIR}/code"
-
+	export MULTEXU_TESTRESULT_DIR="${MULTEXU_BASE_DIR}/test_result"
+	
 	export MULTEXU_BATCH_AUTHORIZE_DIR="${MULTEXU_BATCH_DIR}/authorize"
 	export MULTEXU_BATCH_BUILD_DIR="${MULTEXU_BATCH_DIR}/build"
 	export MULTEXU_BATCH_CONFIG_DIR="${MULTEXU_BATCH_DIR}/config"
@@ -45,7 +46,7 @@ function __multexu_init()
 	export MULTEXU_STATUS_EXECUTE="EXECUTE" 
 	
 	#执行过程中的信号处理,存储信号的共享文件
-	export EXECUTE_STATUS_SIGNAL="${MULTEXU_BATCH_CONFIG_DIR}/multexu.tmp" 
+	export EXECUTE_STATUS_SIGNAL="${MULTEXU_BATCH_CONFIG_DIR}/multexu.signal" 
 }
 
 ##################

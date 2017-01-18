@@ -63,7 +63,6 @@ function test_host_available()
 
 }
 
-
 #
 #测试给定主机是否可达
 #参数：ip

@@ -25,7 +25,7 @@ sleeptime=20 #设置检测的睡眠时间
 limit=10 #递减下限
 
 #测试结果存放目录
-result_dir="testResult"
+result_dir="${MULTEXU_TESTRESULT_DIR}/lustre/fio"
 EXIT_SIGNAL="cat ${MULTEXU_BATCH_TEST_DIR}/control.signal"
 echo "RUN" > ${MULTEXU_BATCH_TEST_DIR}/control.signal
 
