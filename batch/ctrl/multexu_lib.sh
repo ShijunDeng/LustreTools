@@ -266,7 +266,9 @@ function print_message()
 		MULTEXU_ECHOX)
 			local cmd=$1
 			shift
-			$cmd echo "$@"
+            if [ "x${cmd}" = "x1>&2" -o "x${cmd}" = "x1&>2" -o "x${cmd}" = "x&>2" -o "x${cmd}" = "x>&2" ];then
+                1>&2 echo "$@"
+            fi            
     esac
 }
 
