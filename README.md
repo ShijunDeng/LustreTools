@@ -1,4 +1,10 @@
-# LustreTools
+LustreTools
+=========================
+[![TeamCity CodeBetter](https://img.shields.io/teamcity/codebetter/bt428.svg?maxAge=2592000)]()
+[![Packagist](https://img.shields.io/packagist/v/symfony/symfony.svg?maxAge=2592000)]()
+[![Yii2](https://img.shields.io/badge/Powered_by-multexu Framework-green.svg?style=flat)]()
+![Progress](http://progressed.io/bar/95?title=completed )
+
 @(LustreTools)[Lustre自动化工具│HELP│AutoLustre]
 
 **LustreTools** 是在[MULTEXU](https://github.com/ShijunDeng/multexu)基础上开发的，特别针对Lustre分布式文件系统设计的自动编译、安装、部署、测试、控制和监测的工具套件，包括以下功能：
@@ -352,13 +358,13 @@ LustreTools主要是采用shell和python脚本编写的自动化控制套件
 	参数选项:
 
 		--skip_build_kernel ：是否需要编译新内核。如果是首次运行该脚本或者对内核做过修改，那么编译节点需要先编译内核，并自动安装新内核后，再开始文件系统的编译工作；如果不涉及内核的修改，可以省略该选项或者设置为0。skip_build_kernel默认值为1
-		--goto_compile与--only_pre：鉴于虚拟机节点复制需要5-10分钟或者更长时间，为了避免代码修改完毕后运行脚本需要长时间等待情况，可以在空余时间指定--only_pre=1，这样只恢复备份的节点，而不进行后续编译、安装、部署等工作，在代码修改完毕后指定-- goto_compile=1直接进行编译、安装、部署等工作，而不需要恢复节点的过程，达到节约时间的目的。默认值为0
-		--install_lmt：是否安装lmt工具；默认值为1
+		--goto_compile与--only_pre ： 鉴于虚拟机节点复制需要5-10分钟或者更长时间，为了避免代码修改完毕后运行脚本需要长时间等待情况，可以在空余时间指定--only_pre=1，这样只恢复备份的节点，而不进行后续编译、安装、部署等工作，在代码修改完毕后指定-- goto_compile=1直接进行编译、安装、部署等工作，而不需要恢复节点的过程，达到节约时间的目的。默认值为0
+		--install_lmt ： 是否安装lmt工具；默认值为1
 
 
 ## 反馈与建议
 - QQ：946057490
-- 邮箱：<dengshijun1992@gmail.com> <SjDeng@hust.edu.cn>
+- 邮箱：<dengshijun1992@gmail.com> <sjdeng@hust.edu.cn>
 
 ---------
 感谢您阅读这份帮助文档。
