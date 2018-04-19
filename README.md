@@ -2,7 +2,6 @@ LustreTools
 =========================
 [![TeamCity CodeBetter](https://img.shields.io/teamcity/codebetter/bt428.svg?maxAge=2592000)]()
 [![Packagist](https://img.shields.io/packagist/v/symfony/symfony.svg?maxAge=2592000)]()
-[![Yii2](https://img.shields.io/badge/Powered_by-multexu Framework-green.svg?style=flat)]()
 ![Progress](http://progressed.io/bar/95?title=completed )
 
 @(LustreTools)[Lustre自动化工具│HELP│AutoLustre]
